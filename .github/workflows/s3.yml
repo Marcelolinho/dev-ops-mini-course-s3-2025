@@ -61,7 +61,7 @@ jobs:
         uses: actions/download-artifact@v4
         with: 
           name: dist-files
-          path: dist 
+          path: mini-curso-devops/dist
 
       - name: Configure AWS credentials (OIDC)
         uses: aws-actions/configure-aws-credentials@v4
@@ -72,7 +72,6 @@ jobs:
       - name: Copia de arquivos para S3 e faz o SYNC
         run: |
           set -e 
-          aws s3 sync dist/ s3://$S3_NAME/ --delete --region $AWS_REGION
-
+          aws s3 sync mini-curso-devops/dist s3://$S3_NAME/ --delete --region $AWS_REGION
 
 
